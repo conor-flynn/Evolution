@@ -20,7 +20,7 @@ Nature::Nature() {
 	species.push_back(vector<int>
 		{
 			NUMBER_INPUTS, 
-			20, 
+			15, 
 			15,
 			NUMBER_OUTPUTS
 		});
@@ -29,15 +29,15 @@ Nature::Nature() {
 		{
 			NUMBER_INPUTS, 
 			15,
-			20,
+			15,
 			NUMBER_OUTPUTS
 		});
 
 	species.push_back(vector<int>
 		{
 			NUMBER_INPUTS, 
-			20,
-			20,
+			15,
+			15,
 			NUMBER_OUTPUTS
 		});
 
@@ -52,8 +52,8 @@ Nature::Nature() {
 		for (int k = 0; k < num_creatures_per_species; k++) {
 			Creature* creature = new Creature();
 			int x, y;
-			x = xrandomi(0, SCREEN_WIDTH);
-			y = xrandomi(0, SCREEN_HEIGHT);
+			x = xrandomi(0, SCREEN_MAIN_WIDTH);
+			y = xrandomi(0, SCREEN_MAIN_HEIGHT);
 
 			creature->location = Vector2(x, y);
 			creature->direction = xrandomf(0, 360);
@@ -76,8 +76,8 @@ Nature::Nature() {
 		Food* food = new Food();
 
 		int x, y;
-		x = xrandomi(0, SCREEN_WIDTH);
-		y = xrandomi(0, SCREEN_HEIGHT);
+		x = xrandomi(0, SCREEN_MAIN_WIDTH);
+		y = xrandomi(0, SCREEN_MAIN_HEIGHT);
 
 		food->location = Vector2(x, y);
 
@@ -104,7 +104,7 @@ void Nature::evolve(vector<Creature*>* group, int speciesIndex, DPoint* point) {
 		indices.add(index);
 		order[i] = pair<int, Creature*>(min, group->at(index));
 
-		int x, y; x = xrandomi(0, SCREEN_WIDTH); y = xrandomi(0, SCREEN_HEIGHT);
+		int x, y; x = xrandomi(0, SCREEN_MAIN_WIDTH); y = xrandomi(0, SCREEN_MAIN_HEIGHT);
 		order[i].second->location = Vector2(x, y);
 		order[i].second->direction = xrandomf(0, 360);
 		order[i].second->food = 0;
@@ -456,8 +456,8 @@ void Nature::update() {
 					creature->lastFoodCounter = 0;
 
 					int x, y;
-					x = xrandomi(0, SCREEN_WIDTH);
-					y = xrandomi(0, SCREEN_HEIGHT);
+					x = xrandomi(0, SCREEN_MAIN_WIDTH);
+					y = xrandomi(0, SCREEN_MAIN_HEIGHT);
 
 					foods[i]->location = Vector2(x, y);
 				}
@@ -473,8 +473,8 @@ void Nature::update() {
 			food->life = 0;
 
 			int x, y;
-			x = xrandomi(0, SCREEN_WIDTH);
-			y = xrandomi(0, SCREEN_HEIGHT);
+			x = xrandomi(0, SCREEN_MAIN_WIDTH);
+			y = xrandomi(0, SCREEN_MAIN_HEIGHT);
 
 			food->location = Vector2(x, y);
 		}
@@ -484,21 +484,24 @@ void Nature::update() {
 	gen++;
 
 	if (gen > genLimit) {
-		gen = 0;
 		
 		cout << "\n\n\n\tGeneration: " << generation++ << endl << endl;
 
+		DPoint* point = new DPoint();
+
 		for (int i = 0; i < creatures.size(); i++) {
-			int before = 0;
-
-			DPoint* point = new DPoint();
-
 			evolve(&creatures[i], i, point);
-
-			points.push_back(point);
-
-			int after = 0;
 		}
+
+		points.push_back(point);
+
+		for (int i = 0; i < 3; i++) {
+			point->mean[i] /= gen;
+			point->max[i] /= gen;
+		}
+
+
+		gen = 0;
 	}
 	glutPostRedisplay();
 }

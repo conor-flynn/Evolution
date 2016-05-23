@@ -27,10 +27,18 @@ using namespace std;
 // =~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ 
 // =~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ 
 
-const int SCREEN_WIDTH = 1800;
-const int SCREEN_HEIGHT = 900;
 
-const int SCREEN_X = 2000;
+const int SCREEN_MAIN_WIDTH = 1600;
+const int SCREEN_MAIN_HEIGHT = 800;
+
+const int SCREEN_DEBUG_WIDTH = SCREEN_MAIN_WIDTH;
+const int SCREEN_DEBUG_HEIGHT = 200;
+
+
+//const int SCREEN_WIDTH = SCREEN_MAIN_WIDTH;
+//const int SCREEN_HEIGHT = SCREEN_MAIN_HEIGHT + SCREEN_DEBUG_HEIGHT;
+
+const int SCREEN_X = 0;
 const int SCREEN_Y = 0;
 
 const int NUMBER_INPUTS = 5;
@@ -48,7 +56,6 @@ enum Generation {
 struct DPoint {
 	float mean[3];
 	float max[3];
-	float timestep;
 };
 
 // =~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ =~=~ 

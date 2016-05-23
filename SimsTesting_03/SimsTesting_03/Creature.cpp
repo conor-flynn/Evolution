@@ -136,10 +136,10 @@ void Creature::update() {
 
 
 #if 1
-	if (location.getX() < 0) location.setX(SCREEN_WIDTH);
-	if (location.getX() > SCREEN_WIDTH) location.setX(0);
-	if (location.getY() < 0) location.setY(SCREEN_HEIGHT);
-	if (location.getY() > SCREEN_HEIGHT) location.setY(0);
+	if (location.getX() < 0) location.setX(SCREEN_MAIN_WIDTH);
+	if (location.getX() > SCREEN_MAIN_WIDTH) location.setX(0);
+	if (location.getY() < 0) location.setY(SCREEN_MAIN_HEIGHT);
+	if (location.getY() > SCREEN_MAIN_HEIGHT) location.setY(0);
 #endif
 
 #if 0

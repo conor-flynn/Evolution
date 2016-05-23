@@ -19,7 +19,6 @@ public:
 
 	vector<vector<Creature*>> creatures;
 
-	//vector<Creature*> creatures;
 	vector<Food*> foods;
 
 	void evolve(vector<Creature*>* group, int speciesIndex, DPoint* point);
