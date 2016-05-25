@@ -28,16 +28,16 @@ Nature::Nature() {
 	species.push_back(vector<int>
 		{
 			NUMBER_INPUTS, 
-			15,
-			15,
+			20,
+			20,
 			NUMBER_OUTPUTS
 		});
 
 	species.push_back(vector<int>
 		{
 			NUMBER_INPUTS, 
-			15,
-			15,
+			25,
+			25,
 			NUMBER_OUTPUTS
 		});
 
@@ -112,16 +112,16 @@ void Nature::evolve(vector<Creature*>* group, int speciesIndex, DPoint* point) {
 	int index = order[order.size() - 1].second->description;
 	evolution[speciesIndex][index]++;
 
-	order[order.size() - 1].second->description = Generation::TopCreature;
-	for (int i = 5; i < order.size()-1; i++) {
+	for (int i = 0; i < order.size(); i++) {
 		order[i].second->description = Generation::Original;
 	}
+	order[order.size() - 1].second->description = Generation::TopCreature;
 
 	// Non crazy mutations
-#if 1
-	for (int i = 0; i < 5; i++) {
+	int num_mutated = 3;
+	Creature* best = order[order.size() - 1].second;
+	for (int i = 0; i < num_mutated; i++) {
 		Creature* worst = order[i].second;
-		Creature* best = order[order.size() - 1].second;
 
 		delete worst->brain;
 		worst->brain = NULL;
@@ -129,46 +129,19 @@ void Nature::evolve(vector<Creature*>* group, int speciesIndex, DPoint* point) {
 		worst->brain->mutate();
 
 		worst->description = Generation::MutatedCreature;
-
-		while (chance(5 * i)) {
-			worst->brain->mutate();
-		}
 	}
-#endif
 
 
-	// Volatile mutations
-#if 0
-	for (int i = 0; i < order.size(); i++) {
-		Creature* worst = order[i].second;
-		Creature* best = order[order.size() - 1 - i].second;
-
-		if (worst == best) {
-			break;
-		}
-
-		int x, y; x = xrandomi(0, SCREEN_WIDTH); y = xrandomi(0, SCREEN_HEIGHT);
-
-		worst->location = Vector2(x, y);
-		worst->direction = xrandomf(0, 360);
-
-		delete worst->brain;
-		worst->brain = NULL;
-		worst->brain = new Brain(best->brain);
-		worst->brain->mutate();
+	int counted_creatures = 7;
+	float avr = 0;
+	for (int i = counted_creatures; i < order.size(); i++) {
+		avr += order[i].first;
 	}
-#endif
-
-	float sum = 0;
-	for (int i = 0; i < order.size(); i++) {
-		sum += order[i].first;
-	}
-	sum /= ((float)order.size());
-
+	avr /= (order.size() - counted_creatures);
 
 	cout << "Species : " << group->at(0)->brainInfo << endl;
 	cout << "\tWorst    : " << order[0].first << endl;
-	cout << "\tAverage  : " << sum << endl;
+	cout << "\tAverage  : " << avr << endl;
 	cout << "\tBest     : " << order[order.size() - 1].first << endl;
 	cout << "\tProgress : " << endl;
 
@@ -180,7 +153,7 @@ void Nature::evolve(vector<Creature*>* group, int speciesIndex, DPoint* point) {
 	cout << "\t\tOriginal Creature  : " << orig << endl;
 	cout << "\t\tTop Creature       : " << top << endl;
 
-	point->mean[speciesIndex] = sum;
+	point->mean[speciesIndex] = avr;
 	point->max[speciesIndex] = order[order.size() - 1].first;
 
 #if 0
@@ -395,7 +368,7 @@ void Nature::senseArea(Creature * source, vector<float>* inputs) {
 
 void Nature::update() {
 	//float genLimit = 2000 + (2 * generation);
-	float genLimit = 2000 + (2 * generation);
+	float genLimit = 5000;
 
 	for (vector<Creature*> things : creatures) {
 		for (Creature* creature : things) {
@@ -432,11 +405,6 @@ void Nature::update() {
 			inputs.push_back(dir);
 			inputs.push_back(dir_);
 #endif
-
-			if (inputs.size() != NUMBER_INPUTS) {
-				cout << "Input size mismatch" << endl;
-				while (true) {}
-			}
 			creature->process(inputs);
 		}
 	}
@@ -495,10 +463,12 @@ void Nature::update() {
 
 		points.push_back(point);
 
+#if 0
 		for (int i = 0; i < 3; i++) {
 			point->mean[i] /= gen;
 			point->max[i] /= gen;
 		}
+#endif
 
 
 		gen = 0;

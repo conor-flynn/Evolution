@@ -10,11 +10,11 @@ void drawit(float lx, float ly, float hx, float hy, float x1, float y1, float x2
 	float ydiff = hy - ly;
 
 	float nx1 = (x1 / xdiff) * SCREEN_DEBUG_WIDTH;
-	float ny1 = (y1 / ydiff) * SCREEN_DEBUG_HEIGHT;
+	float ny1 = (y1 / ydiff) * SCREEN_DEBUG_HEIGHT * 0.95f;
 	ny1 = (SCREEN_MAIN_HEIGHT + SCREEN_DEBUG_HEIGHT) - ny1;
 
 	float nx2 = (x2 / xdiff) * SCREEN_DEBUG_WIDTH;
-	float ny2 = (y2 / ydiff) * SCREEN_DEBUG_HEIGHT;
+	float ny2 = (y2 / ydiff) * SCREEN_DEBUG_HEIGHT * 0.95f;
 	ny2 = (SCREEN_MAIN_HEIGHT + SCREEN_DEBUG_HEIGHT) - ny2;
 
 	glVertex2f(nx1, ny1);
@@ -34,20 +34,28 @@ void drawData() {
 		DPoint* point = points->at(i);
 
 		for (int j = 0; j < 3; j++) {
+#if 0
 			float v1 = point->mean[j];
 			float v2 = point->max[j];
 
-			if (miny > v1) miny = v1;
-			if (miny > v2) miny = v2;
+			float max = (v1 >= v2) ? v1 : v2;
+			float min = (v1 >= v2) ? v2 : v1;
 
-			if (maxy < v1) maxy = v1;
-			if (maxy < v2) maxy = v2;
+			if (min < miny) miny = min;
+			if (max > maxy) maxy = max;
+#endif
+#if 1
+			float v1 = point->mean[j];
+			if (v1 < miny) miny = v1;
+			if (v1 > maxy) maxy = v1;
+#endif
 		}
 	}
 
-	miny *= 0.95f;
-	maxy *= 1.05f;
-
+	/*
+	You want miny to be larger than 0
+	You want maxy to be smaller than it can be
+	*/
 
 	float ly = miny;
 	float hy = maxy;
@@ -63,7 +71,19 @@ void drawData() {
 		for (int j = 0; j < 3; j++) {
 			// Mean
 			glBegin(GL_LINES);
-			glColor3f(0, 1, 0);
+			switch (j) {
+			case 0:
+				glColor3f(0, 1, 0);
+				break;
+			case 1:
+				glColor3f(0, 0, 1);
+				break;
+			case 2:
+				glColor3f(1, 0, 0);
+				break;
+			default:
+				break;
+			}
 			float x1 = i;
 			float y1 = current->mean[j];
 
@@ -72,7 +92,7 @@ void drawData() {
 
 			drawit(lx, ly, hx, hy, x1, y1, x2, y2);
 		}
-
+#if 0
 		for (int j = 0; j < 3; j++) {
 			// Max
 			glBegin(GL_LINES);
@@ -85,6 +105,7 @@ void drawData() {
 
 			drawit(lx, ly, hx, hy, x1, y1, x2, y2);
 		}
+#endif
 	}
 }
 

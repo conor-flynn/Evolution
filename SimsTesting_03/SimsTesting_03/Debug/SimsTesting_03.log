@@ -1,10 +1,36 @@
-﻿  Nature.cpp
+﻿  Vector2.cpp
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\vector2.cpp(58): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\vector2.cpp(72): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\vector2.cpp(81): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\vector2.cpp(82): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\vector2.cpp(91): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  sources.cpp
+  Neuron.cpp
+  Nature.cpp
 d:\users\conor\desktop\sims\simstesting_03\simstesting_03\nature.cpp(49): warning C4018: '<': signed/unsigned mismatch
 d:\users\conor\desktop\sims\simstesting_03\simstesting_03\nature.cpp(64): warning C4018: '<': signed/unsigned mismatch
 d:\users\conor\desktop\sims\simstesting_03\simstesting_03\nature.cpp(94): warning C4018: '<': signed/unsigned mismatch
 d:\users\conor\desktop\sims\simstesting_03\simstesting_03\nature.cpp(97): warning C4018: '<': signed/unsigned mismatch
-d:\users\conor\desktop\sims\simstesting_03\simstesting_03\nature.cpp(116): warning C4018: '<': signed/unsigned mismatch
-d:\users\conor\desktop\sims\simstesting_03\simstesting_03\nature.cpp(163): warning C4018: '<': signed/unsigned mismatch
-d:\users\conor\desktop\sims\simstesting_03\simstesting_03\nature.cpp(449): warning C4018: '<': signed/unsigned mismatch
-d:\users\conor\desktop\sims\simstesting_03\simstesting_03\nature.cpp(492): warning C4018: '<': signed/unsigned mismatch
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\nature.cpp(115): warning C4018: '<': signed/unsigned mismatch
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\nature.cpp(137): warning C4018: '<': signed/unsigned mismatch
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\nature.cpp(417): warning C4018: '<': signed/unsigned mismatch
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\nature.cpp(460): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\main.cpp(32): warning C4018: '<': signed/unsigned mismatch
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\main.cpp(66): warning C4018: '<': signed/unsigned mismatch
+  Food.cpp
+  Creature.cpp
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\creature.cpp(74): warning C4018: '<': signed/unsigned mismatch
+  Brain.cpp
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\brain.cpp(30): warning C4018: '<': signed/unsigned mismatch
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\brain.cpp(86): warning C4018: '<': signed/unsigned mismatch
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\brain.cpp(162): warning C4018: '<': signed/unsigned mismatch
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\brain.cpp(168): warning C4018: '<': signed/unsigned mismatch
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\brain.cpp(176): warning C4018: '<': signed/unsigned mismatch
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\brain.cpp(178): warning C4018: '<': signed/unsigned mismatch
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\brain.cpp(185): warning C4018: '<': signed/unsigned mismatch
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\brain.cpp(190): warning C4018: '<': signed/unsigned mismatch
+d:\users\conor\desktop\sims\simstesting_03\simstesting_03\brain.cpp(202): warning C4018: '<': signed/unsigned mismatch
+  Axon.cpp
+  Generating Code...
   SimsTesting_03.vcxproj -> D:\Users\conor\Desktop\Sims\SimsTesting_03\Debug\SimsTesting_03.exe
